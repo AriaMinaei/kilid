@@ -1,0 +1,27 @@
+{
+  "name": "kilid",
+  "version": "0.0.0",
+  "description": "(work in progress)",
+  "main": "scripts/js/lib/Kilid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "node ./node_modules/coffee-script/bin/cake build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AriaMinaei/kilid.git"
+  },
+  "keywords": [
+  ],
+  "author": "Aria Minaei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AriaMinaei/kilid/issues"
+  },
+  "dependencies": {
+    "utila": "~0.3.0-beta1"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  }
+}
