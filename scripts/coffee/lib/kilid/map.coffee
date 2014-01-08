@@ -61,9 +61,9 @@ module.exports.nameByKeyCode = nameByKeyCode =
 	88  : "x"
 	89  : "y"
 	90  : "z"
-	91  : "cmd"
-	92  : "cmd"
-	93  : "cmd"
+	# 91  : "cmd"
+	# 92  : "cmd"
+	# 93  : "cmd"
 	96  : "num_0"
 	97  : "num_1"
 	98  : "num_2"
@@ -95,11 +95,8 @@ module.exports.nameByKeyCode = nameByKeyCode =
 	221 : "]"
 	222 : "\'"
 	223 : "`"
-	224 : "cmd"
-	225 : "alt"
-	# Opera weirdness
-	57392   : "ctrl"
-	63289   : "num"
+	# 224 : "cmd"
+	# 225 : "alt"
 
 module.exports.keyCodeByName = keyCodeByName = {}
 
