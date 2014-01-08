@@ -130,4 +130,9 @@ module.exports = class Scope
 
 		@_isActive = no
 
+		# this is not a permanent solution
+		for listener in @_listeners
+
+			listener._forceEnd()
+
 		return

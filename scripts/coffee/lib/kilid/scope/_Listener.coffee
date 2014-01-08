@@ -37,3 +37,11 @@ module.exports = class _Listener
 		@_startCallback = cb
 
 		@
+
+	_forceEnd: ->
+
+		return unless @_wasDown
+
+		do @_fireEnd
+
+		return
