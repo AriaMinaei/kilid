@@ -1,22 +1,14 @@
-module.exports = class ComboListener
+_Listener = require './_Listener'
+
+module.exports = class ComboListener extends _Listener
 
 	constructor: (@_kilid, @_combo) ->
 
-		@_downCallback = null
-
-		@_upCallback = null
-
-		@_holdCallback = null
+		super
 
 		@_isExclusive = yes
 
-		@_locked = no
-
-		setTimeout =>
-
-			@_locked = yes
-
-		, 0
+		@_hitCallback = null
 
 	beInclusive: ->
 
@@ -80,15 +72,15 @@ module.exports = class ComboListener
 
 		if @_wasDown
 
-			@_fireKeydown e
+			@_fireHit e
 
 			return
 
 		if @_comboIsDown()
 
-			@_fireKeydown e
+			@_fireHit e
 
-			@_fireKeyHold e
+			@_fireStart e
 
 		return
 
@@ -98,7 +90,7 @@ module.exports = class ComboListener
 
 		unless @_comboIsDown()
 
-			@_fireKeyup e
+			@_fireEnd e
 
 		return
 
@@ -108,19 +100,19 @@ module.exports = class ComboListener
 
 			if @_comboIsExclusivelyDown()
 
-				@_fireKeydown e
+				@_fireHit e
 
 			else
 
-				@_fireKeyup e
+				@_fireEnd e
 
 		else
 
 			return unless @_comboIsExclusivelyDown()
 
-			@_fireKeydown e
+			@_fireHit e
 
-			@_fireKeyHold e
+			@_fireStart e
 
 		return
 
@@ -128,68 +120,48 @@ module.exports = class ComboListener
 
 		if @_wasDown
 
-			@_fireKeyup e
+			@_fireEnd e
 
 		else
 
 			return unless @_comboIsExclusivelyDown()
 
-			@_fireKeydown e
+			@_fireHit e
 
-			@_fireKeyHold e
-
-		return
-
-	_fireKeydown: (e) ->
-
-		if @_downCallback?
-
-			@_downCallback e
+			@_fireStart e
 
 		return
 
-	_fireKeyup: (e) ->
+	_fireHit: (e) ->
+
+		if @_hitCallback?
+
+			@_hitCallback e
+
+		return
+
+	_fireEnd: (e) ->
 
 		@_wasDown = no
 
-		if @_upCallback?
+		if @_endCallback?
 
-			@_upCallback e
+			@_endCallback e
 
 		return
 
-	_fireKeyHold: (e) ->
+	_fireStart: (e) ->
 
 		@_wasDown = yes
 
-		if @_holdCallback?
+		if @_startCallback?
 
-			@_holdCallback e
-
-		return
-
-	onDown: (cb) ->
-
-		@_downCallback = cb
-
-		@
-
-	onUp: (cb) ->
-
-		@_upCallback = cb
-
-		@
-
-	onHold: (cb) ->
-
-		@_holdCallback = cb
-
-		@
-
-	detach: ->
-
-		@_kilid._detachListener @
-
-		@_kilid = null
+			@_startCallback e
 
 		return
+
+	onHit: (cb) ->
+
+		@_hitCallback = cb
+
+		@

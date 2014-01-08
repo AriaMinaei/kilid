@@ -1,6 +1,7 @@
 map = require './kilid/map'
 array = require 'utila/scripts/js/lib/array'
 ComboListener = require './kilid/ComboListener'
+NoKeyListener = require './kilid/NoKeyListener'
 
 module.exports = class Kilid
 
@@ -40,9 +41,13 @@ module.exports = class Kilid
 
 		ar = @_comboToArray combo
 
-		return @_getListenerNoKeys() unless ar
+		unless ar
 
-		combo = new ComboListener @, ar
+			combo = new NoKeyListener @
+
+		else
+
+			combo = new ComboListener @, ar
 
 		@_listeners.push combo
 
