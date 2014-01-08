@@ -1,6 +1,8 @@
 module.exports = class _Listener
 
-	constructor: ->
+	constructor: (@_scope) ->
+
+		@_kilid = @_scope._kilid
 
 		@_endCallback = null
 
@@ -16,7 +18,9 @@ module.exports = class _Listener
 
 	detach: ->
 
-		@_kilid._detachListener @
+		@_scope._detachListener @
+
+		@_scope = null
 
 		@_kilid = null
 

@@ -1,11 +1,9 @@
-map = require './kilid/map'
+Scope = require './kilid/Scope'
 array = require 'utila/scripts/js/lib/array'
-ComboListener = require './kilid/ComboListener'
-NoKeyListener = require './kilid/NoKeyListener'
 
 module.exports = class Kilid
 
-	constructor: (@rootNode = document) ->
+	constructor: (@rootNode = document, @id = 'kilid') ->
 
 		@rootNode.addEventListener 'keydown', @_keydown
 
@@ -13,7 +11,25 @@ module.exports = class Kilid
 
 		@_keysCurrentlyDown = []
 
-		@_listeners = []
+		@_rootScope = new Scope null, @, @id
+
+		@_activeScope = null
+
+		@_rootScope.activate()
+
+	_setActiveScope: (scope) ->
+
+		if @_activeScope?
+
+			@_activeScope._notActiveAnymore()
+
+		@_activeScope = scope
+
+		return
+
+	getRootScope: ->
+
+		@_rootScope
 
 	_keydown: (e) =>
 
@@ -21,9 +37,7 @@ module.exports = class Kilid
 
 			@_keysCurrentlyDown.push e.keyCode
 
-		for listener in @_listeners
-
-			listener._handleKeydown e
+		@_activeScope._keydown e
 
 		return
 
@@ -31,44 +45,6 @@ module.exports = class Kilid
 
 		array.pluckOneItem @_keysCurrentlyDown, e.keyCode
 
-		for listener in @_listeners
-
-			listener._handleKeyup e
-
-		return
-
-	on: (combo) ->
-
-		ar = @_comboToArray combo
-
-		unless ar
-
-			combo = new NoKeyListener @
-
-		else
-
-			combo = new ComboListener @, ar
-
-		@_listeners.push combo
-
-		combo
-
-	_comboToArray: (combo) ->
-
-		unless typeof combo is 'string'
-
-			throw Error "Combo must be a string"
-
-		combo = combo.trim().replace /\s+/, ' '
-
-		return false if combo.length is 0
-
-		combo.split(/\s*\+\s*/)
-
-		.map (name) => map.keyCodeByName[name]|0
-
-	_detachListener: (listener) ->
-
-		array.pluckOneItem @_listeners, listener
+		@_activeScope._keyup e
 
 		return

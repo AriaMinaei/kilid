@@ -2,7 +2,9 @@ _Listener = require './_Listener'
 
 module.exports = class NoKeyListener extends _Listener
 
-	constructor: (@_kilid) ->
+	constructor: (scope) ->
+
+		super
 
 		@_wasStarted = no
 

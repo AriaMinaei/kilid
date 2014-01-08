@@ -2,7 +2,7 @@ _Listener = require './_Listener'
 
 module.exports = class ComboListener extends _Listener
 
-	constructor: (@_kilid, @_combo) ->
+	constructor: (scope, @_combo) ->
 
 		super
 
