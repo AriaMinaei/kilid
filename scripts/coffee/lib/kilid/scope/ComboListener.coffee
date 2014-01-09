@@ -10,6 +10,20 @@ module.exports = class ComboListener extends _Listener
 
 		@_hitCallback = null
 
+		@_preventDefault = yes
+
+	preventDefault: ->
+
+		@_preventDefault = yes
+
+		@
+
+	allowDefault: ->
+
+		@_preventDefault = no
+
+		@
+
 	beInclusive: ->
 
 		if @_locked
@@ -134,6 +148,8 @@ module.exports = class ComboListener extends _Listener
 
 	_fireHit: (e) ->
 
+		if e? and @_preventDefault then e.preventDefault()
+
 		if @_hitCallback?
 
 			@_hitCallback e
@@ -141,6 +157,8 @@ module.exports = class ComboListener extends _Listener
 		return
 
 	_fireEnd: (e) ->
+
+		if e? and @_preventDefault then e.preventDefault()
 
 		@_wasDown = no
 

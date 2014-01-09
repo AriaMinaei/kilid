@@ -1,6 +1,6 @@
 {
   "name": "kilid",
-  "version": "0.1.0-beta2",
+  "version": "0.1.0-beta3",
   "description": "(work in progress)",
   "main": "scripts/js/lib/Kilid.js",
   "scripts": {
