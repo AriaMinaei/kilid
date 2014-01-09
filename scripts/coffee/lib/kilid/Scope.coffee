@@ -52,17 +52,17 @@ module.exports = class Scope
 
 		@
 
-	on: (combo) ->
+	on: (combo, args...) ->
 
 		ar = @_comboToArray combo
 
 		unless ar
 
-			combo = new NoKeyListener @
+			combo = new NoKeyListener @, args
 
 		else
 
-			combo = new ComboListener @, ar
+			combo = new ComboListener @, ar, args
 
 		@_listeners.push combo
 

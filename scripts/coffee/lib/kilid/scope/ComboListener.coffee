@@ -2,7 +2,7 @@ _Listener = require './_Listener'
 
 module.exports = class ComboListener extends _Listener
 
-	constructor: (scope, @_combo) ->
+	constructor: (scope, @_combo, args) ->
 
 		super
 
@@ -11,6 +11,10 @@ module.exports = class ComboListener extends _Listener
 		@_hitCallback = null
 
 		@_preventDefault = yes
+
+		if typeof args[0] is 'function'
+
+			@onHit args[0]
 
 	preventDefault: ->
 
