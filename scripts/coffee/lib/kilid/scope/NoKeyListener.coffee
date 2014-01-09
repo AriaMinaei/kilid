@@ -37,3 +37,13 @@ module.exports = class NoKeyListener extends _Listener
 			do @_startCallback
 
 		return
+
+	detach: ->
+
+		if @_wasStarted and @_endCallback?
+
+			do @_endCallback
+
+		super
+
+		return

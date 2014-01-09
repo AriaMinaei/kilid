@@ -1,5 +1,6 @@
 ComboListener = require './scope/ComboListener'
 NoKeyListener = require './scope/NoKeyListener'
+array = require 'utila/scripts/js/lib/array'
 map = require './map'
 
 module.exports = class Scope

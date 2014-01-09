@@ -20,6 +20,8 @@ module.exports = class _Listener
 
 		@_scope._detachListener @
 
+
+
 		@_scope = null
 
 		@_kilid = null

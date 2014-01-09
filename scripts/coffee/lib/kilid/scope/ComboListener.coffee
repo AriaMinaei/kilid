@@ -187,3 +187,11 @@ module.exports = class ComboListener extends _Listener
 		@_hitCallback = cb
 
 		@
+
+	detach: ->
+
+		if @_wasDown then @_fireEnd()
+
+		super
+
+		return
