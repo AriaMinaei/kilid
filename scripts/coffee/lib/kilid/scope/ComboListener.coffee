@@ -195,3 +195,23 @@ module.exports = class ComboListener extends _Listener
 		super
 
 		return
+
+	_forceEnd: ->
+
+		return unless @_wasDown
+
+		do @_fireEnd
+
+		return
+
+	_recheck: ->
+
+		if @_wasDown
+
+			console.warn '_recheck ws called when ComboListener was already down'
+
+			return
+
+		do @_handleKeydown
+
+		return

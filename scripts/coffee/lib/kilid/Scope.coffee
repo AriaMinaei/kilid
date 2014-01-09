@@ -15,7 +15,7 @@ module.exports = class Scope
 
 		@_isActive = no
 
-		@_children = []
+		@_children = {}
 
 	_keydown: (e) ->
 
@@ -97,6 +97,10 @@ module.exports = class Scope
 
 		@_children[name]
 
+	getTempScope: ->
+
+		new Scope @, @_kilid, 'null'
+
 	activate: ->
 
 		if @_isActive
@@ -106,6 +110,10 @@ module.exports = class Scope
 		@_kilid._setActiveScope @
 
 		@_isActive = yes
+
+		for listener in @_listeners
+
+			listener._recheck()
 
 		@
 
@@ -123,6 +131,20 @@ module.exports = class Scope
 
 		@
 
+	remove: ->
+
+		do @deactivate if @_isActive
+
+		@parent._removeChild @
+
+		return
+
+	_removeChild: (child) ->
+
+		array.pluckOneItem @_children, child
+
+		return
+
 	_notActiveAnymore: ->
 
 		unless @_isActive
@@ -131,7 +153,6 @@ module.exports = class Scope
 
 		@_isActive = no
 
-		# this is not a permanent solution
 		for listener in @_listeners
 
 			listener._forceEnd()

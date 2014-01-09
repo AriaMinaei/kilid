@@ -40,10 +40,3 @@ module.exports = class _Listener
 
 		@
 
-	_forceEnd: ->
-
-		return unless @_wasDown
-
-		do @_fireEnd
-
-		return
