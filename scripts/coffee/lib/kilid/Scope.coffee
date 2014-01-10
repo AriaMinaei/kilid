@@ -158,3 +158,27 @@ module.exports = class Scope
 			listener._forceEnd()
 
 		return
+
+	_blur: ->
+
+		unless @_isActive
+
+			throw Error "Called _blur when scope is not active"
+
+		for listener in @_listeners
+
+			listener._forceEnd()
+
+		return
+
+	_focus: ->
+
+		unless @_isActive
+
+			throw Error "Called _focus when scope is not active"
+
+		for listener in @_listeners
+
+			listener._recheck()
+
+		return

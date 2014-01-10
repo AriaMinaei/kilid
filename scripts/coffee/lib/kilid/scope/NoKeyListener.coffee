@@ -42,7 +42,7 @@ module.exports = class NoKeyListener extends _Listener
 
 		if @_wasStarted
 
-			console.log 'NoKeyListener is already in "started" mode but has recieved a keyup event'
+			# console.log 'NoKeyListener is already in "started" mode but has recieved a keyup event'
 
 			return
 

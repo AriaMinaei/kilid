@@ -9,6 +9,10 @@ module.exports = class Kilid
 
 		@rootNode.addEventListener 'keyup', @_keyup
 
+		window.addEventListener 'focus', @_focus
+
+		window.addEventListener 'blur', @_blur
+
 		@_keysCurrentlyDown = []
 
 		@_rootScope = new Scope null, @, @id
@@ -46,5 +50,19 @@ module.exports = class Kilid
 		array.pluckOneItem @_keysCurrentlyDown, e.keyCode
 
 		@_activeScope._keyup e
+
+		return
+
+	_focus: =>
+
+		@_activeScope._focus()
+
+		return
+
+	_blur: =>
+
+		@_keysCurrentlyDown.length = 0
+
+		@_activeScope._blur()
 
 		return
