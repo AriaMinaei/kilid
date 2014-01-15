@@ -37,6 +37,8 @@ module.exports = class Kilid
 
 	_keydown: (e) =>
 
+		# console.log 'down', @_keysCurrentlyDown
+
 		if @_keysCurrentlyDown.indexOf(e.keyCode) is -1
 
 			@_keysCurrentlyDown.push e.keyCode
@@ -46,6 +48,8 @@ module.exports = class Kilid
 		return
 
 	_keyup: (e) =>
+
+		# console.log 'up', @_keysCurrentlyDown
 
 		array.pluckOneItem @_keysCurrentlyDown, e.keyCode
 

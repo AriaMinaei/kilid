@@ -8,6 +8,12 @@ module.exports = class NoKeyListener extends _Listener
 
 		@_wasStarted = no
 
+		setTimeout =>
+
+			unless @_wasStarted then do @_recheck
+
+		, 0
+
 	_recheck: ->
 
 		if @_wasStarted
