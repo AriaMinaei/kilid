@@ -18,11 +18,11 @@ module.exports = class NoKeyListener extends _Listener
 
 		if @_wasStarted
 
-			console.log '_recheck ws called when NoKeyListener was already started'
+			# console.log '_recheck ws called when NoKeyListener was already started'
 
 			return
 
-		return unless @_kilid._keysCurrentlyDown.length is 0
+		return unless @_kilid? and @_kilid._keysCurrentlyDown.length is 0
 
 		@_wasStarted = yes
 
@@ -46,7 +46,7 @@ module.exports = class NoKeyListener extends _Listener
 
 	_handleKeyup: (e) ->
 
-		if @_wasStarted
+		if @_wasStarted or not @_kilid?
 
 			# console.log 'NoKeyListener is already in "started" mode but has recieved a keyup event'
 

@@ -37,8 +37,6 @@ module.exports = class Kilid
 
 	_keydown: (e) =>
 
-		# console.log 'down', @_keysCurrentlyDown
-
 		if @_keysCurrentlyDown.indexOf(e.keyCode) is -1
 
 			@_keysCurrentlyDown.push e.keyCode
