@@ -94,7 +94,7 @@ module.exports.nameByKeyCode = nameByKeyCode =
 	220 : "\\"
 	221 : "]"
 	222 : "\'"
-	223 : "`"
+	# 223 : "`"
 	# 224 : "cmd"
 	# 225 : "alt"
 
