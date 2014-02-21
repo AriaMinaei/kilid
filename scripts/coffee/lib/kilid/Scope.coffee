@@ -103,9 +103,7 @@ module.exports = class Scope
 
 	activate: ->
 
-		if @_isActive
-
-			throw Error "Scope is already active"
+		return if @_isActive
 
 		@_kilid._setActiveScope @
 
@@ -119,9 +117,7 @@ module.exports = class Scope
 
 	deactivate: ->
 
-		unless @_isActive
-
-			throw Error "Scope is not active to be deactivated"
+		return unless @_isActive
 
 		unless @parent?
 
