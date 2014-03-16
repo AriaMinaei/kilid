@@ -52,6 +52,13 @@ module.exports = class ComboListener extends _Listener
 
 		for keyCode in @_combo
 
+			if keyCode.length?
+
+				x1 = keyCode[0] in @_kilid._keysCurrentlyDown
+				x2 = keyCode[1] in @_kilid._keysCurrentlyDown
+
+				return x1 or x2
+
 			return no unless keyCode in @_kilid._keysCurrentlyDown
 
 		yes
