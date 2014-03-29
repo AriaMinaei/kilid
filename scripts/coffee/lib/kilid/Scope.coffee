@@ -79,9 +79,13 @@ module.exports = class Scope
 
 		return false if combo.length is 0
 
-		combo.split(/\s*\+\s*/)
+		x = combo.split(/\s*\+\s*/)
 
-		.map (name) => map.keyCodeByName[name]|0
+		.map (name) =>
+
+			code = map.keyCodeByName[name]
+
+		x
 
 	_detachListener: (listener) ->
 
