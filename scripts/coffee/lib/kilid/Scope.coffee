@@ -17,7 +17,13 @@ module.exports = class Scope
 
 		@_children = {}
 
+		@_scrollingDisabled = no
+
 	_keydown: (e) ->
+
+		if @_scrollingDisabled and e.keyCode in self.scrollKeyCodes
+
+			e.preventDefault()
 
 		for listener in @_listeners
 
@@ -182,3 +188,15 @@ module.exports = class Scope
 			listener._recheck()
 
 		return
+
+	disableScrolling: ->
+
+		@_scrollingDisabled = yes
+
+	enableScrolling: ->
+
+		@_scrollingDisabled = no
+
+	@scrollKeyCodes: [32, 33, 34, 35, 36, 37, 38, 39, 40]
+
+	self = @

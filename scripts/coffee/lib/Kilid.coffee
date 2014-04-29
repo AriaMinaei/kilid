@@ -47,8 +47,6 @@ module.exports = class Kilid
 
 	_keyup: (e) =>
 
-		# console.log 'up', @_keysCurrentlyDown
-
 		array.pluckOneItem @_keysCurrentlyDown, e.keyCode
 
 		@_activeScope._keyup e
