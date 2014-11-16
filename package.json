@@ -1,6 +1,6 @@
 {
   "name": "kilid",
-  "version": "0.1.0-beta.10",
+  "version": "0.1.0-beta.11",
   "description": "(work in progress)",
   "main": "scripts/js/lib/Kilid.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "url": "https://github.com/AriaMinaei/kilid/issues"
   },
   "dependencies": {
-    "utila": "~0.3.0-beta1"
+    "utila": "~0.4.0"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3"
