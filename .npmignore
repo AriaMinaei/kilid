@@ -3,7 +3,7 @@
 
 xeno/**
 node_modules
-scripts/dist
+src/
 pg*
 -p
 
